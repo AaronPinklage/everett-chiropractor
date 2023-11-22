@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Everett Chiropractor</title>
+<style>
+  /* Centered content */
+  .centered-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+  }
+
+  /* Style the phone number link */
+  .phone-link {
+    font-size: 24px;
+    text-decoration: none;
+    background-color: #0074d9;
+    color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+  }
+  
+  /* Style the placeholder text */
+  .placeholder-text {
+    text-align: center;
+    font-size: 18px;
+    margin-top: 20px;
+  }
+
+  /* Style the RSS feed content */
+  .rss-feed {
+    margin-top: 20px;
+  }
+</style>
+</head>
+
+<body>
+  <!-- First iframe -->
+  <div>
+    <iframe src="https://everettinjuryclinic.com/" width="100%" height="600"></iframe>
+  </div>
+
+  <!-- Second iframe -->
+  <div>
+    <iframe src="https://everett-accident-and-injury-clinic-chiropractor-everett.business.site/" width="100%" height="600"></iframe>
+  </div>
+
+  <!-- Phone number link -->
+  <div class="centered-content">
+    <a class="phone-link" href="tel:+14253748014">(425) 374-8014</a>
+  </div>
+
+  <!-- RSS feed content -->
+  <div class="rss-feed">
+    <h2>RSS Feed:</h2>
+    <ul id="feed-list"></ul>
+  </div>
+
+  <div class="text">
+    <a>At </a><a href="https://everett-accident-and-injury-clinic-chiropractor-everett.business.site/">Everett Accident an Injury Clinic</a><a>, we understand that life is unpredictable and accidents can happen at any time. We strive to ensure your health and well-being and provide you with the highest quality care possible. With same-day appointments available, you can get the treatment you need without waiting an extended time for an appointment. Our experienced team of medical professionals is here to help alleviate your pain and treat any injuries that may have been sustained from a recent accident. We also offer free initial consultations so our clients can get the help they need to assess their situation as soon as possible. So if you are looking for a </a><a href="https://www.google.com/maps/place/?cid=17690311945172678894">chiropractor near me</a><a>, then contact us.</a>
+  </div>
+
+  <script>
+    // JavaScript code to fetch and display the RSS feed
+    const feedList = document.getElementById("feed-list");
+
+    // URL of the RSS feed
+    const rssFeedURL = "https://everettaccidentaninjury.blogspot.com/feeds/posts/default?alt=rss";
+
+    // Fetch the RSS feed
+    fetch(rssFeedURL)
+      .then((response) => response.text())
+      .then((data) => {
+        const parser = new DOMParser();
+        const xmlDoc = parser.parseFromString(data, "text/xml");
+        const items = xmlDoc.querySelectorAll("item");
+
+        items.forEach((item) => {
+          const title = item.querySelector("title").textContent;
+          const link = item.querySelector("link").textContent;
+
+          const listItem = document.createElement("li");
+          const linkElement = document.createElement("a");
+          linkElement.textContent = title;
+          linkElement.href = link;
+          listItem.appendChild(linkElement);
+          feedList.appendChild(listItem);
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching RSS feed:", error);
+      });
+  </script>
+</body>
+</html>
